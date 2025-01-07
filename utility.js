@@ -8,10 +8,17 @@ function to_base_62(deci) {
         var a = s[b] ? s[b]: "";
         hash_str = hash_str+a;
         deci = parseInt(deci/62);
-        console.log("b",b,"a",a, "deci", deci);
     }
 
     return hash_str;
 }
 
+function check_valid_url(longurl){
+//     using regex to check if the url is valid or not
+    var regex = new RegExp(/^(http|https):\/\/[^ "]+$/);
+    return regex.test(longurl);
+
+}
+
+export {check_valid_url};
 export default to_base_62;
