@@ -13,24 +13,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Function to reconnect to PostgreSQL
-const reconnectClient = () => {
-    client.connect(err => {
-        if (err) {
-            console.error('Failed to reconnect to PostgreSQL', err);
-            setTimeout(reconnectClient, 5000); // Retry after 5 seconds
-        } else {
-            console.log('Reconnected to PostgreSQL');
-        }
-    });
-};
-
-// Error handling for PostgreSQL client
-client.on('error', (err) => {
-    console.error('Unexpected error on idle client', err);
-    if (err.code === '57P01') { // Check for specific error code if needed
-        reconnectClient();
-    }
-});
+// const reconnectClient = () => {
+//     client.connect(err => {
+//         if (err) {
+//             console.error('Failed to reconnect to PostgreSQL', err);
+//             setTimeout(reconnectClient, 5000); // Retry after 5 seconds
+//         } else {
+//             console.log('Reconnected to PostgreSQL');
+//         }
+//     });
+// };
+//
+// // Error handling for PostgreSQL client
+// client.on('error', (err) => {
+//     console.error('Unexpected error on idle client', err);
+//     if (err.code === '57P01') { // Check for specific error code if needed
+//         reconnectClient();
+//     }
+// });
 
 app.post('/shorten', async (req, res) => {
     const longUrl = req.body.longurl;
