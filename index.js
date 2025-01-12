@@ -31,7 +31,9 @@ app.use(express.urlencoded({ extended: true }));
 //         reconnectClient();
 //     }
 // });
-
+app.get('/', (req, res) => {
+    res.status(200).json({ message: "Welcome to URL Shortener" });
+}   );
 app.post('/shorten', async (req, res) => {
     const longUrl = req.body.longurl;
     if (!longUrl) {
